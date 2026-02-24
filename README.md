@@ -27,14 +27,18 @@ The project is built with asynchronous processing, automated OAuth token managem
 
 🛠️ Installation
   1. Clone the repository:
+   ```
     git clone https://github.com/brahim-iharraren/TC1_PortAuth_api.git
     cd TC1_PortAuth_api
+   ```
   
   2 Create and activate a virtual environment:
+    ```
     python -m venv venv
     source venv/bin/activate  # Linux/macOS
     venv\Scripts\activate     # Windows
     pip install -r requirements.txt
+    ```
 
 Project Structure
   .
