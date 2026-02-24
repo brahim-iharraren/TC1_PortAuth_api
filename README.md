@@ -29,7 +29,7 @@ The project is built with asynchronous processing, automated OAuth token managem
   1. Clone the repository:
    ```
     git clone https://github.com/brahim-iharraren/TC1_PortAuth_api.git
-    cd TC1_PortAuth_api
+    cd TC1_PortAuth_api/V1
    ```
   
   2 Create and activate a virtual environment:
