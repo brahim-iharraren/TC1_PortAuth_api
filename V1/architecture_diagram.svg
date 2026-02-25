@@ -1,0 +1,156 @@
+<svg viewBox="0 0 1000 780" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <!-- Background -->
+  <rect width="1000" height="780" fill="#0f1117"/>
+
+  <!-- Title -->
+  <text x="500" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">ETC &amp; BerthPlan Data Pipeline — Architecture</text>
+
+  <!-- ═══════════════ MAIN.PY box ═══════════════ -->
+  <rect x="390" y="60" width="220" height="64" rx="10" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+  <text x="500" y="86" text-anchor="middle" font-size="14" font-weight="bold" fill="#a5b4fc">main.py</text>
+  <text x="500" y="106" text-anchor="middle" font-size="11" fill="#94a3b8">asyncio.run(main())</text>
+
+  <!-- ═══════════════ ETC BRANCH (left) ═══════════════ -->
+  <!-- EtcHandler box -->
+  <rect x="80" y="200" width="200" height="64" rx="10" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+  <text x="180" y="226" text-anchor="middle" font-size="13" font-weight="bold" fill="#67e8f9">EtcHandler</text>
+  <text x="180" y="246" text-anchor="middle" font-size="10" fill="#94a3b8">etc_handler_api.py</text>
+
+  <!-- SQL Server box -->
+  <rect x="30" y="340" width="200" height="58" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+  <text x="130" y="364" text-anchor="middle" font-size="12" font-weight="bold" fill="#fcd34d">SQL Server (pyodbc)</text>
+  <text x="130" y="382" text-anchor="middle" font-size="10" fill="#94a3b8">Sparcsn4.dbo — inv_wi / argo_carrier_visit</text>
+
+  <!-- ETC XML Builder (inline in etc_handler) -->
+  <rect x="30" y="460" width="200" height="54" rx="10" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="130" y="482" text-anchor="middle" font-size="11" font-weight="bold" fill="#67e8f9">XML Assembly</text>
+  <text x="130" y="498" text-anchor="middle" font-size="10" fill="#94a3b8">SOAP envelope wrapping</text>
+
+  <!-- ETC Remote Endpoint -->
+  <rect x="30" y="580" width="200" height="54" rx="10" fill="#1e293b" stroke="#f43f5e" stroke-width="2"/>
+  <text x="130" y="602" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb7185">ETC_URI</text>
+  <text x="130" y="620" text-anchor="middle" font-size="10" fill="#94a3b8">httpx POST — text/xml</text>
+
+  <!-- Local SOAP Archive -->
+  <rect x="260" y="580" width="180" height="54" rx="10" fill="#1e293b" stroke="#84cc16" stroke-width="2"/>
+  <text x="350" y="602" text-anchor="middle" font-size="12" font-weight="bold" fill="#bef264">SOAP_Archive/</text>
+  <text x="350" y="620" text-anchor="middle" font-size="10" fill="#94a3b8">APMT_ETC_&lt;timestamp&gt;.xml</text>
+
+  <!-- ═══════════════ BP BRANCH (right) ═══════════════ -->
+  <!-- BerthPlanHandler box -->
+  <rect x="720" y="200" width="210" height="64" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="825" y="226" text-anchor="middle" font-size="13" font-weight="bold" fill="#c4b5fd">BerthPlanHandler</text>
+  <text x="825" y="246" text-anchor="middle" font-size="10" fill="#94a3b8">bp_handler_api.py</text>
+
+  <!-- OAuth / Token -->
+  <rect x="660" y="330" width="160" height="54" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+  <text x="740" y="352" text-anchor="middle" font-size="11" font-weight="bold" fill="#fcd34d">OAuth2 Token</text>
+  <text x="740" y="368" text-anchor="middle" font-size="10" fill="#94a3b8">TOKEN_URL → access_token</text>
+
+  <!-- BP REST API -->
+  <rect x="840" y="330" width="130" height="54" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+  <text x="905" y="352" text-anchor="middle" font-size="11" font-weight="bold" fill="#fcd34d">BP_URL</text>
+  <text x="905" y="368" text-anchor="middle" font-size="10" fill="#94a3b8">GET berth data</text>
+
+  <!-- BerthPlanData JSON -->
+  <rect x="840" y="430" width="130" height="48" rx="10" fill="#1e293b" stroke="#84cc16" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="905" y="452" text-anchor="middle" font-size="11" font-weight="bold" fill="#bef264">BerthPlan_data</text>
+  <text x="905" y="466" text-anchor="middle" font-size="10" fill="#94a3b8">.json (local cache)</text>
+
+  <!-- Metrics box -->
+  <rect x="640" y="430" width="175" height="54" rx="10" fill="#1e293b" stroke="#fb923c" stroke-width="2"/>
+  <text x="727" y="452" text-anchor="middle" font-size="12" font-weight="bold" fill="#fdba74">BerthMetricCalculator</text>
+  <text x="727" y="468" text-anchor="middle" font-size="10" fill="#94a3b8">metrics.py — bollard map</text>
+
+  <!-- xml_builder box -->
+  <rect x="680" y="545" width="200" height="54" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="780" y="567" text-anchor="middle" font-size="12" font-weight="bold" fill="#c4b5fd">xml_file_builder()</text>
+  <text x="780" y="583" text-anchor="middle" font-size="10" fill="#94a3b8">xml_builder.py — SOAP XML</text>
+
+  <!-- BP Remote Endpoint -->
+  <rect x="680" y="660" width="200" height="54" rx="10" fill="#1e293b" stroke="#f43f5e" stroke-width="2"/>
+  <text x="780" y="682" text-anchor="middle" font-size="12" font-weight="bold" fill="#fb7185">BP_XML_SEND_URL</text>
+  <text x="780" y="700" text-anchor="middle" font-size="10" fill="#94a3b8">httpx POST — text/xml</text>
+
+  <!-- ═══════════════ ARROWS ═══════════════ -->
+  <!-- main → EtcHandler -->
+  <line x1="420" y1="124" x2="230" y2="200" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#arr-cyan)"/>
+  <text x="300" y="162" text-anchor="middle" font-size="10" fill="#67e8f9">get_etc_xml()</text>
+
+  <!-- main → BerthPlanHandler -->
+  <line x1="580" y1="124" x2="770" y2="200" stroke="#a78bfa" stroke-width="1.8" marker-end="url(#arr-purple)"/>
+  <text x="700" y="162" text-anchor="middle" font-size="10" fill="#c4b5fd">metrics_handler()</text>
+
+  <!-- EtcHandler → SQL -->
+  <line x1="155" y1="264" x2="130" y2="340" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arr-cyan)"/>
+  <text x="95" y="308" font-size="10" fill="#67e8f9">sqlConnection()</text>
+  <text x="95" y="320" font-size="10" fill="#67e8f9">read_data()</text>
+
+  <!-- SQL → XML Assembly -->
+  <line x1="130" y1="398" x2="130" y2="460" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arr-cyan)"/>
+  <text x="135" y="435" font-size="10" fill="#67e8f9">raw XML rows</text>
+
+  <!-- XML Assembly → ETC_URI -->
+  <line x1="130" y1="514" x2="130" y2="580" stroke="#f43f5e" stroke-width="1.5" marker-end="url(#arr-red)"/>
+  <text x="136" y="550" font-size="10" fill="#fb7185">send_xml()</text>
+
+  <!-- XML Assembly → SOAP Archive -->
+  <line x1="230" y1="492" x2="300" y2="580" stroke="#84cc16" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="282" y="534" font-size="10" fill="#bef264">save locally</text>
+
+  <!-- BerthPlanHandler → OAuth -->
+  <line x1="780" y1="264" x2="750" y2="330" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+
+  <!-- BerthPlanHandler → BP_URL -->
+  <line x1="870" y1="264" x2="900" y2="330" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+
+  <!-- BP_URL → JSON cache -->
+  <line x1="905" y1="384" x2="905" y2="430" stroke="#84cc16" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+  <!-- OAuth + BP_URL → Metrics (conceptual flow lines) -->
+  <line x1="820" y1="384" x2="780" y2="430" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+
+  <!-- Metrics → xml_builder -->
+  <line x1="727" y1="484" x2="760" y2="545" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arr-purple)"/>
+  <text x="718" y="518" font-size="10" fill="#c4b5fd">metric points</text>
+
+  <!-- JSON → xml_builder -->
+  <line x1="880" y1="478" x2="830" y2="545" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arr-purple)"/>
+  <text x="868" y="518" font-size="10" fill="#c4b5fd">berth data</text>
+
+  <!-- xml_builder → BP send -->
+  <line x1="780" y1="599" x2="780" y2="660" stroke="#f43f5e" stroke-width="1.5" marker-end="url(#arr-red)"/>
+  <text x="786" y="636" font-size="10" fill="#fb7185">send_xml()</text>
+
+  <!-- ═══════════════ Legend ═══════════════ -->
+  <rect x="380" y="680" width="240" height="84" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="500" y="700" text-anchor="middle" font-size="11" font-weight="bold" fill="#cbd5e1">Legend</text>
+  <line x1="395" y1="716" x2="425" y2="716" stroke="#22d3ee" stroke-width="2"/>
+  <text x="430" y="720" font-size="10" fill="#94a3b8">ETC data flow</text>
+  <line x1="395" y1="732" x2="425" y2="732" stroke="#a78bfa" stroke-width="2"/>
+  <text x="430" y="736" font-size="10" fill="#94a3b8">BerthPlan data flow</text>
+  <line x1="395" y1="748" x2="425" y2="748" stroke="#f43f5e" stroke-width="2"/>
+  <text x="430" y="752" font-size="10" fill="#94a3b8">HTTP POST to remote</text>
+
+  <!-- ═══════════════ Arrow markers ═══════════════ -->
+  <defs>
+    <marker id="arr-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22d3ee"/>
+    </marker>
+    <marker id="arr-purple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#a78bfa"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f43f5e"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#84cc16"/>
+    </marker>
+    <marker id="arr-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#fb923c"/>
+    </marker>
+  </defs>
+</svg>
